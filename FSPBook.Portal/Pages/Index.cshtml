@@ -4,6 +4,74 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
+<div class="text-left">
+    <h1 class="display-4">Posts</h1>
+<table class="table table-sm table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Post[0].Author)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Post[0].Content)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Post[0].DateTimePosted)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Items)
+        {
+            <tr>
+                <td>
+                    @Model.GetAuthor(item.AuthorId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Content)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateTimePosted)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
 </div>
+@*<paging total-records="Model.MaxPages"
+        page-no="Model.PageSize">
+</paging>*@
+@if (Model.pager.Pages.Any())
+{
+    <nav class="table-responsive">
+        <ul class="pagination justify-content-center d-flex flex-wrap">
+            @if (Model.pager.CurrentPage > 1)
+            {
+                <li class="page-item">
+                    <a class="page-link" href="/">First</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="/?p=@(Model.pager.CurrentPage - 1)">Previous</a>
+                </li>
+            }
+
+            @foreach (var p in Model.pager.Pages)
+            {
+                <li class="page-item @(p == Model.pager.CurrentPage ? "active" : "")">
+                    <a class="page-link" href="/?p=@p">@p</a>
+                </li>
+            }
+
+            @if (Model.pager.CurrentPage < Model.pager.TotalPages)
+            {
+                <li class="page-item">
+                    <a class="page-link" href="/?p=@(Model.pager.CurrentPage + 1)">Next</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="/?p=@(Model.pager.TotalPages)">Last</a>
+                </li>
+            }
+        </ul>
+    </nav>
+}

@@ -31,7 +31,20 @@ internal static class SeedData
                 var posts = new List<Post>
                 {
                     new Post { Id = 1, Content = exampleText, DateTimePosted = new DateTimeOffset(2020, 11, 1, 10, 0, 0, TimeSpan.Zero), AuthorId = 1 },
-                    new Post { Id = 2, Content = exampleText, DateTimePosted = new DateTimeOffset(2020, 11, 1, 15, 0, 0, TimeSpan.Zero), AuthorId = 2 }
+                    new Post { Id = 2, Content = exampleText, DateTimePosted = new DateTimeOffset(2020, 11, 1, 15, 0, 0, TimeSpan.Zero), AuthorId = 2 },
+                    new Post { Id = 3, Content = exampleText, DateTimePosted = new DateTimeOffset(2021, 9, 2, 16, 0, 0, TimeSpan.Zero), AuthorId = 3 },
+                    new Post { Id = 4, Content = exampleText, DateTimePosted = new DateTimeOffset(2021, 12, 4, 16, 30, 0, TimeSpan.Zero), AuthorId = 4 },
+                    new Post { Id = 5, Content = exampleText, DateTimePosted = new DateTimeOffset(2021, 12, 6, 15, 0, 0, TimeSpan.Zero), AuthorId = 5 },
+                    new Post { Id = 6, Content = exampleText, DateTimePosted = new DateTimeOffset(2021, 12, 8, 12, 0, 0, TimeSpan.Zero), AuthorId = 6 },
+                    new Post { Id = 7, Content = exampleText, DateTimePosted = new DateTimeOffset(2021, 12, 15, 17, 0, 0, TimeSpan.Zero), AuthorId = 7 },
+                    new Post { Id = 8, Content = exampleText, DateTimePosted = new DateTimeOffset(2022, 1, 1, 11, 0, 0, TimeSpan.Zero), AuthorId = 1 },
+                    new Post { Id = 9, Content = exampleText, DateTimePosted = new DateTimeOffset(2022, 2, 1, 15, 0, 0, TimeSpan.Zero), AuthorId = 2 },
+                    new Post { Id = 10, Content = exampleText, DateTimePosted = new DateTimeOffset(2022, 3, 1, 15, 0, 0, TimeSpan.Zero), AuthorId = 3 },
+                    new Post { Id = 11, Content = exampleText, DateTimePosted = new DateTimeOffset(2022, 4, 1, 15, 0, 0, TimeSpan.Zero), AuthorId = 4 },
+                    new Post { Id = 12, Content = exampleText, DateTimePosted = new DateTimeOffset(2022, 5, 5, 15, 0, 0, TimeSpan.Zero), AuthorId = 5 },
+                    new Post { Id = 13, Content = exampleText, DateTimePosted = new DateTimeOffset(2022, 5, 6, 15, 0, 0, TimeSpan.Zero), AuthorId = 6 },
+                    new Post { Id = 14, Content = exampleText, DateTimePosted = new DateTimeOffset(2022, 5, 6, 17, 30, 0, TimeSpan.Zero), AuthorId = 7 },
+                    new Post { Id = 15, Content = exampleText, DateTimePosted = new DateTimeOffset(2022, 6, 1, 15, 0, 0, TimeSpan.Zero), AuthorId = 1 }
                 };
 
                 context.Post.AddRange(posts);
