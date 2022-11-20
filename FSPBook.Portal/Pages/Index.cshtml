@@ -34,7 +34,10 @@
                                 @Html.DisplayFor(modelItem => item.Content)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.DateTimePosted)
+                                @{
+                                    string DateString = item.DateTimePosted.ToString("MM/dd/yyyy HH:mm");
+                                }
+                                @Html.DisplayFor(modelItem => DateString)
                             </td>
                         </tr>
                     }
@@ -97,7 +100,11 @@
                             @Html.DisplayFor(modelItem => news.title)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => news.published_at)
+                            @{
+                                DateTime date = DateTime.Parse(news.published_at);
+                                string DateString = date.ToString("MM/dd/yyyy HH:mm");
+                            }
+                            @Html.DisplayFor(modelItem => DateString)
                         </td>
                     </tr>
                 }

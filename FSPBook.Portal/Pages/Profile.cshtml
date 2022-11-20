@@ -44,7 +44,10 @@
                             @Html.DisplayFor(modelItem => item.Content)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.DateTimePosted)
+                            @{
+                                string DateString = item.DateTimePosted.ToString("MM/dd/yyyy HH:mm");
+                            }
+                            @Html.DisplayFor(modelItem => DateString)
                         </td>
                     </tr>
                 }
@@ -53,5 +56,5 @@
     </div>
 </div>
 <div>|
-    <a asp-page="./Index">Back to Home Page</a>
+    <a asp-page="./Index">Back to Home Page</a> |
 </div>
