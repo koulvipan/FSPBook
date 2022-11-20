@@ -4,44 +4,45 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Posts</h1>
+<div class="split left">
+    <div class="text-center">
+        <h1 class="display-4">All Posts</h1>
+        <div class="centered">
+            <table class="table table-sm table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Posts[0].Author)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Posts[0].Content)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Posts[0].DateTimePosted)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Items)
+                    {
+                        <tr>
+                            <td>
+                                <a asp-page="./Profile" asp-route-id="@item.AuthorId">@Model.GetAuthor(item.AuthorId)</a>                             
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Content)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DateTimePosted)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
-<table class="table table-sm table-striped table-bordered">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Post[0].Author)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Post[0].Content)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Post[0].DateTimePosted)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.Items)
-        {
-            <tr>
-                <td>
-                    @Model.GetAuthor(item.AuthorId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Content)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DateTimePosted)
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
-@*<paging total-records="Model.MaxPages"
-        page-no="Model.PageSize">
-</paging>*@
 @if (Model.pager.Pages.Any())
 {
     <nav class="table-responsive">
@@ -75,3 +76,32 @@
         </ul>
     </nav>
 }
+<div class="split right">
+    <div class="centered">
+        <table class="table table-sm table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>
+                        News
+                    </th>
+                    <th>
+                        DateTimePosted
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var news in Model.News.data)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => news.title)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => news.published_at)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
