@@ -3,11 +3,63 @@
 @{
     ViewData["Title"] = "Home page";
 }
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<div class="split left">
+<div class="sidebar">
     <div class="text-center">
-        <h1 class="display-4">All Posts</h1>
-        <div class="centered">
+        <h6 class="display-4">News Feed</h6>
+    </div>
+    @foreach (var news in Model.News.data)
+    {
+        <p><a href="@news.url">@Html.DisplayFor(modelItem => news.title)</a></p>
+    }
+</div>
+
+<div class="body-text">
+    <div class="text-center">
+        <h3 class="display-4">All Posts</h3>
+    </div>
+    <table class="table table-sm table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Posts[0].Author)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Posts[0].Content)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Posts[0].DateTimePosted)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Items)
+            {
+                <tr>
+                    <td>
+                        <a asp-page="./Profile" asp-route-id="@item.AuthorId">@Model.GetAuthor(item.AuthorId)</a>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Content)
+                    </td>
+                    <td>
+                        @{
+                            string DateString = item.DateTimePosted.ToString("MM/dd/yyyy HH:mm");
+                        }
+                        @Html.DisplayFor(modelItem => DateString)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@*<div class="row">
+    <div class="left">
+        <div class="text-center">
+            <h3 class="display-4">All Posts</h3>
+        </div>
             <table class="table table-sm table-striped table-bordered">
                 <thead>
                     <tr>
@@ -20,7 +72,6 @@
                         <th>
                             @Html.DisplayNameFor(model => model.Posts[0].DateTimePosted)
                         </th>
-                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -43,44 +94,12 @@
                     }
                 </tbody>
             </table>
-        </div>
     </div>
-</div>
-@if (Model.pager.Pages.Any())
-{
-    <nav class="table-responsive">
-        <ul class="pagination justify-content-center d-flex flex-wrap">
-            @if (Model.pager.CurrentPage > 1)
-            {
-                <li class="page-item">
-                    <a class="page-link" href="/">First</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="/?p=@(Model.pager.CurrentPage - 1)">Previous</a>
-                </li>
-            }
-
-            @foreach (var p in Model.pager.Pages)
-            {
-                <li class="page-item @(p == Model.pager.CurrentPage ? "active" : "")">
-                    <a class="page-link" href="/?p=@p">@p</a>
-                </li>
-            }
-
-            @if (Model.pager.CurrentPage < Model.pager.TotalPages)
-            {
-                <li class="page-item">
-                    <a class="page-link" href="/?p=@(Model.pager.CurrentPage + 1)">Next</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="/?p=@(Model.pager.TotalPages)">Last</a>
-                </li>
-            }
-        </ul>
-    </nav>
-}
-<div class="split right">
-    <div class="centered">
+    <div class="middle"><table></table></div>
+    <div class="right">
+        <div class="text-center">
+            <h3 class="display-4">News Feed</h3>
+        </div>
         <table class="table table-sm table-striped table-bordered">
             <thead>
                 <tr>
@@ -111,4 +130,38 @@
             </tbody>
         </table>
     </div>
-</div>
+</div>*@
+@if (Model.pager.Pages.Any())
+{
+    <nav class="table-responsive align-content-center">
+        <ul class="pagination justify-content-center d-flex flex-wrap">
+            @if (Model.pager.CurrentPage > 1)
+            {
+                <li class="page-item">
+                    <a class="page-link" href="/">First</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="/?p=@(Model.pager.CurrentPage - 1)">Previous</a>
+                </li>
+            }
+
+            @foreach (var p in Model.pager.Pages)
+            {
+                <li class="page-item @(p == Model.pager.CurrentPage ? "active" : "")">
+                    <a class="page-link" href="/?p=@p">@p</a>
+                </li>
+            }
+
+            @if (Model.pager.CurrentPage < Model.pager.TotalPages)
+            {
+                <li class="page-item">
+                    <a class="page-link" href="/?p=@(Model.pager.CurrentPage + 1)">Next</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="/?p=@(Model.pager.TotalPages)">Last</a>
+                </li>
+            }
+        </ul>
+    </nav>
+}
+

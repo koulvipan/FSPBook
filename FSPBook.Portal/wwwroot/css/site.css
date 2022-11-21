@@ -59,7 +59,7 @@ html {
 }
 
 body {
-  /* Margin bottom by footer height */
+   /*Margin bottom by footer height*/ 
   margin-bottom: 60px;
 }
 
@@ -76,34 +76,49 @@ body {
   color: red;
 }
 
-/* Split the screen in half */
-.split {
-    height: 100%;
-    width: 50%;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    overflow-x: hidden;
-    padding-top: 20px;
+.column {
+    float: left;
+   /* padding: 10px;*/
 }
 
-/* Control the left side */
 .left {
-    left: 0;
-    background-color: #111;
+    width: 60%;
 }
 
-/* Control the right side */
 .right {
-    right: 0;
-    background-color: red;
+    width: 30%;
 }
 
-/* If you want the content centered horizontally and vertically */
-.centered {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
+.middle {
+    width: 10%;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+
+.sidebar {
+    float: left;
+    height: 200px;
+    width: 300px;
+    position: fixed;
+    top: 0px;
+    right: 0;
+    padding-top: 120px;
+    border:thin;
+    /*background-color: lightblue;*/
+}
+
+.sidebar div {
+     padding: 8px;
+     font-size: 24px;
+     display: block;
+}
+
+.body-text {
+    margin-right: 150px;
+    font-size: 18px;
 }

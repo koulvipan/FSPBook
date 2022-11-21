@@ -15,5 +15,6 @@ namespace FSPBook.Data.Entities
     {
         public string title { get; set; }
         public string published_at { get; set; }
+        public string url { get; set; }
     }
 }
